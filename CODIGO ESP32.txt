@@ -1,0 +1,44 @@
+const int pinAO = 34;  // Entrada analógica
+const int pinDO = 14;  // Entrada digital
+const int buzzer = 27; // Buzzer activo
+
+void setup() {
+  Serial.begin(115200);
+  delay(500);
+
+  pinMode(pinDO, INPUT);
+  pinMode(buzzer, OUTPUT);
+
+  Serial.println("🔥 MQ-2 + Buzzer Ready — alarma modo speedrun activada");
+}
+
+void loop() {
+  int valorAO = analogRead(pinAO);
+  int valorDO = digitalRead(pinDO);
+
+  Serial.print("AO: ");
+  Serial.print(valorAO);
+  Serial.print(" | DO: ");
+  Serial.println(valorDO);
+
+  // Alarma super rápida
+  if (valorDO == HIGH || valorAO > 2000) {
+    Serial.println("⚠️ GAS DETECTADO — TURBO ALARMA 🔔🔥");
+
+    digitalWrite(buzzer, HIGH);
+    delay(40);   // pitido muy corto
+    digitalWrite(buzzer, LOW);
+    delay(40);   // pausa muy corta
+
+  } else {
+    digitalWrite(buzzer, LOW);
+  }
+
+  delay(50);
+}
+
+
+
+
+//CONEXIONES: VIN: VCC, GND: GND, D14: D0, D34: A0
+// BUZZER: D27:+, GND: -
