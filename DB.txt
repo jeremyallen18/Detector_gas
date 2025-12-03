@@ -1,0 +1,9 @@
+CREATE DATABASE gas_alerta;
+
+USE gas_alerta;
+
+CREATE TABLE usuarios_alerta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    correo VARCHAR(255) NOT NULL,
+    enviados INT DEFAULT 0
+);
